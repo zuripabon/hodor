@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <link href="static/index.css" rel="stylesheet"/>
+  </head>
+  <body>
+
+    <img class="header" src="static/hodor.jpg" />
+    <div class="buttons">
+      <a class="join">Join</a>
+      <a class="leave">Leave</a>
+    </div>
+    <div class="margin"></div>
+
+    <script type="text/javascript">
+
+    const join = document.querySelector('.join');
+    const leave = document.querySelector('.leave');
+
+    const emitAction = function(action){
+
+      return function(event){
+        event.target.classList.toggle('disabled');
+        const xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+          // readyState 4 means the request is done.
+          if (xhr.readyState === 4) {
+            onResponse(xhr.status, xhr.responseText);
+            event.target.classList.toggle('disabled');
+          }
+        };
+        xhr.open('GET', action);
+        xhr.send(null);
+        return false;
+      }
+    }
+
+    const onResponse = function(status, response){
+        // something was wrong
+        if(status !== 200) {}
+    }
+
+    join.addEventListener('click', emitAction('pi/join'))
+    leave.addEventListener('click',  emitAction('pi/leave'));
+
+    </script>
+  </body>
+</html>
