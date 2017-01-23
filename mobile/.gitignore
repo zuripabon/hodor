@@ -1,12 +1,10 @@
-*.pyc
-
 # OSX
 #
 .DS_Store
 
 # Xcode
 #
-mobile/build/
+build/
 *.pbxuser
 !default.pbxuser
 *.mode1v3
