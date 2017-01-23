@@ -1,0 +1,85 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@import url(https://fonts.googleapis.com/css?family=Fira+Sans);
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+@import url(https://fonts.googleapis.com/css?family=Droid+Sans);
+
+@media screen and (max-width: 319px) {
+  .buttons a {
+    font-size: 20px;
+  }
+
+  .buttons .join {
+    position: relative;
+    top: 40px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .buttons a {
+    font-size: 20px;
+  }
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  background: #ECF0F1;
+  font-family: "Fira Sans";
+  text-align: center;
+}
+
+.header {
+
+  text-align:center;
+  width: 400px;
+  height: 300px;
+  margin-top: 50px;
+}
+
+.buttons {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  width: 200px;
+  height: 100px;
+  background: #F2385A;
+  position: relative;
+  margin: 30px;
+  top: 100px;
+  padding: 16px;
+  font-size: 50px;
+  border-radius: 10px;
+  box-shadow: 0px 15px 0px 0px #f02046, 0px 0px 20px 0px #bbb;
+  transition: all 0.2s;
+}
+
+a:active {
+  top: 108px;
+  box-shadow: 0px 7px 0px 0px #f02046;
+}
+
+a.disabled{
+  opacity: 0.5;
+}
+
+.leave {
+  background-color: #F2385A;
+}
+
+.join {
+  padding: 16px 38px;
+  background-color: #3498DB;
+  box-shadow: 0px 15px 0px 0px #258cd1;
+}
+.join:active {
+  box-shadow: 0px 7px 0px 0px #258cd1;
+}
+
+.margin{
+  margin-bottom: 150px;
+}
