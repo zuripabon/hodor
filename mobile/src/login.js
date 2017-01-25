@@ -10,7 +10,8 @@ import {
   Text,
   View,
   Image,
-  TouchableHighlight
+  TouchableHighlight,
+  Button
 } from 'react-native';
 import Routes from './routes';
 
@@ -21,27 +22,36 @@ export default class Login extends Component {
     this.props.navigator.replace({id:Routes.parking.id});
   }
 
+  join(){
+
+  }
+
+  leave(){
+
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <TouchableHighlight onPress={this._onPressButton.bind(this)}>
-          <Image source={require('../img/hodor.jpg')} style={styles.start}/>
-        </TouchableHighlight>
-        <Text style={styles.welcome}>
-          <Text>Welcome to</Text>
-          <Text style={styles.title}> Hodor App</Text>
-        </Text>
-        <Text style={styles.instructions}>
-          <Text>To get started, say Hodor!</Text>
-        </Text>
-        <Text style={styles.instructions}>
-          <Text>Made with ♥ by Alberto & Zuri</Text>
-        </Text>
-        {
-          // <Text style={styles.instructions}>
-          //   <Text>Shake or press button above to start</Text>
-          // </Text>
-        }
+        <Text style={styles.title}>HODOR</Text>
+        <Text style={styles.description}>Opening your doors since <Text style={styles.year}>2016</Text></Text>
+        <View style={styles.logoContainer}>
+          <Image source={require('../img/logo.png')} style={styles.logo}/>
+        </View>
+        <View style={styles.buttonContainer}>
+          <TouchableHighlight
+            style={styles.button}
+            onPress={this.join.bind(this)}
+            underlayColor='#494949'>
+              <Text style={styles.textButton}>LEAVE</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            style={styles.button}
+            onPress={this.join.bind(this)}
+            underlayColor='#494949'>
+              <Text style={styles.textButton}>JOIN</Text>
+          </TouchableHighlight>
+        </View>
       </View>
     );
   }
@@ -50,29 +60,60 @@ export default class Login extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    flexDirection: 'column',
     alignItems: 'center',
-    backgroundColor: 'rgba(36, 37, 38, 1)',
-    color: 'rgba(255, 255, 255, .4)'
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-    color: 'rgba(255, 255, 255, .4)',
-    fontWeight: "bold"
+    backgroundColor: '#181818',
+    fontFamily: 'throne'
   },
   title: {
-    color: 'rgba(255, 255, 255, .5)'
-  },
-  instructions: {
+    fontSize: 35,
     textAlign: 'center',
-    marginBottom: 5,
-    color: 'rgba(255, 255, 255, .4)'
+    marginTop: 40,
+    color: '#f1f1f1',
+    fontFamily: 'throne'
   },
-  start: {
-    width: 400,
-    height: 300,
-    marginBottom: 15,
+  description: {
+    fontSize: 10,
+    textAlign: 'center',
+    marginTop: 5,
+    color: '#f1f1f1',
+    fontFamily: 'throne',
+    opacity: 0.8
+  },
+  year:{
+    fontSize: 14
+  },
+  logoContainer: {
+    width: 120,
+    height: 100,
+    marginTop: 60,
+    marginBottom: 5
+  },
+  logo: {
+    flex: 1,
+    width: null,
+    height: null,
+    resizeMode: 'contain'
+  },
+  button : {
+    backgroundColor: '#181818',
+    marginBottom: 60,
+    borderRadius: 5,
+    borderWidth: 0.5,
+    borderColor: '#f1f1f1',
+    width: 120,
+    height: 40,
+    paddingTop: 12
+  },
+  textButton: {
+    color: "#f1f1f1",
+    textAlign: 'center',
+    fontFamily: 'throne'
+  },
+  buttonContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
+    alignItems: 'center'
   }
 });
