@@ -4,18 +4,18 @@
  * @flow
  */
 
-import HomeView from './login';
-import ParkingView from './parking';
+import HomeView from './home';
+//import ParkingView from './parking';
 
 export default {
   home: {
     id: 'home',
     title: 'Home',
     component: HomeView
-  },
-  parking: {
-    id: 'parking',
-    title: 'Parking',
-    component: ParkingView
   }
+  // parking: {
+  //   id: 'parking',
+  //   title: 'Parking',
+  //   component: ParkingView
+  // }
 }

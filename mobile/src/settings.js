@@ -5,5 +5,6 @@
  */
 
 export default {
-  appTitle: 'hodor'
+  host: '192.168.1.5',
+  port: '8080'
 }

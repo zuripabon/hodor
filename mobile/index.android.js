@@ -6,7 +6,6 @@
  import React, { Component } from 'react';
  import { AppRegistry, Navigator } from 'react-native';
  import Routes from './src/routes';
- import Settings from './src/settings';
 
 export default class Hodor extends Component {
 
@@ -30,7 +29,7 @@ export default class Hodor extends Component {
   }
 }
 
-AppRegistry.registerComponent(Settings.appTitle, () => Hodor);
+AppRegistry.registerComponent('test', () => Hodor);
 
 /*
 

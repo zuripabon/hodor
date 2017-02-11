@@ -1,29 +1,25 @@
 {
-  "name": "hodor",
-  "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest",
-    "build": "(cd android/ && gradlew assembleDebug && cd ..)",
-    "bundle-android": "react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output android/app/src/main/assets/index.android.bundle --sourcemap-output android/app/src/main/assets/index.android.map --assets-dest android/app/src/main/res/",
-		"generate-apk": "cd android && ./gradlew assembleRelease"
-  },
-  "dependencies": {
-    "react": "15.4.2",
-    "react-native": "0.40.0",
-    "react-native-vector-icons": "^4.0.0"
-  },
-  "devDependencies": {
-    "babel-jest": "18.0.0",
-    "babel-preset-react-native": "1.9.1",
-    "babel-preset-es2015": "latest",
-    "babel-preset-stage-3": "latest",
-    "jest": "18.1.0",
-    "native-base": "^0.5.22",
-    "react-test-renderer": "15.4.2"
-  },
-  "jest": {
-    "preset": "react-native"
-  }
+	"name": "hodor",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"start": "node node_modules/react-native/local-cli/cli.js start",
+		"test": "jest",
+		"apk:debug": "cd android/ && gradlew assembleDebug && cd ..",
+		"apk:release": "cd android && gradlew assembleRelease && cd ..",
+		"bundle-android": "react-native.cmd bundle --platform android --dev false --entry-file index.android.js --bundle-output android/app/src/main/assets/index.android.bundle --sourcemap-output android/app/src/main/assets/index.android.map --assets-dest android/app/src/main/res/"
+	},
+	"dependencies": {
+		"react": "15.4.2",
+		"react-native": "0.41.2"
+	},
+	"devDependencies": {
+		"babel-jest": "18.0.0",
+		"babel-preset-react-native": "1.9.1",
+		"jest": "18.1.0",
+		"react-test-renderer": "15.4.2"
+	},
+	"jest": {
+		"preset": "react-native"
+	}
 }
