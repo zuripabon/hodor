@@ -24,8 +24,13 @@ export default class HomeView extends Component {
 
   constructor(props){
     super(props);
+    this.resetCounters();
   }
 
+  resetCounters(){
+    this.leaveCount = 0;
+    this.joinCount = 0;
+  }
   // _onPressButton(){
   //
   //   this.props.navigator.replace({id:Routes.parking.id});
@@ -43,7 +48,19 @@ export default class HomeView extends Component {
   }
 
   leave(){
-    this._emit('pi/leave', (error, data) => console.log('left'));
+
+    if(!this.counterTimerID)
+      this.counterTimerID = setTimeout(() => this.resetCounters(), TIMER_COUNTER);
+
+    this.leaveCount++;
+
+    if(this.leaveCount > MAX_COUNTER_TIMES){
+      return this.props.navigator.replace({id:Routes.keepCalm.id});
+    }
+
+    if(this.leaveCount === 1){
+      this._emit('pi/leave', (error, data) => console.log('left'));
+    }
   }
 
   render() {

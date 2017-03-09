@@ -5,6 +5,7 @@
  */
 
 import HomeView from './home';
+import KeepCalp from './keep_calm';
 //import ParkingView from './parking';
 
 export default {
@@ -12,6 +13,11 @@ export default {
     id: 'home',
     title: 'Home',
     component: HomeView
+  },
+  keepCalm: {
+    id: 'keepCalm',
+    title: 'Keep Calm & Say Hodor',
+    component: KeepCalp
   }
   // parking: {
   //   id: 'parking',

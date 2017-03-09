@@ -6,7 +6,7 @@
 		"start": "node node_modules/react-native/local-cli/cli.js start",
 		"test": "jest",
 		"apk:debug": "cd android/ && gradlew assembleDebug && cd ..",
-		"apk:release": "cd android && gradlew assembleRelease && cd ..",
+		"apk:release": "cd android && gradlew assembleRelease && gradlew installRelease && cd ..",
 		"bundle-android": "react-native.cmd bundle --platform android --dev false --entry-file index.android.js --bundle-output android/app/src/main/assets/index.android.bundle --sourcemap-output android/app/src/main/assets/index.android.map --assets-dest android/app/src/main/res/"
 	},
 	"dependencies": {
