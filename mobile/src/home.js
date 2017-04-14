@@ -12,18 +12,48 @@ import {
   View,
   Image,
   TouchableHighlight,
+  ToastAndroid,
   Button
 } from 'react-native';
- import Routes from './routes';
- import settings from './settings';
+import Routes from './routes';
+import settings from './settings';
+import wifi from 'react-native-android-wifi';
 
 const TIMER_COUNTER = 2 * 1000;
 const MAX_COUNTER_TIMES = 5;
+const SSID = 'HODOR';
+const PASS = 'hodor2017';
+const RECONNECTION_INTERVAL = 10;
+
+const connectToWifi = () => {
+  wifi.findAndConnect(SSID, PASS, found => {
+    if(!found){
+      ToastAndroid.showWithGravity(
+        `${SSID} network not found`,
+        ToastAndroid.LONG,
+        ToastAndroid.BOTTOM,
+      );
+      return setTimeout(() => connectToWifi(), RECONNECTION_INTERVAL * 1000);
+    }
+    ToastAndroid.showWithGravity(
+      `Connected to ${SSID} network`,
+      ToastAndroid.LONG,
+      ToastAndroid.BOTTOM,
+    );
+  });
+};
 
 export default class HomeView extends Component {
 
   constructor(props){
     super(props);
+  }
+
+  componentDidMount(){
+    wifi.isEnabled(isEnabled => {
+      if(!isEnabled) wifi.setEnabled(true);
+      connectToWifi();
+    });
   }
 
   // _onPressButton(){
@@ -78,8 +108,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     alignItems: 'center',
-    backgroundColor: '#181818',
-    fontFamily: 'throne'
+    backgroundColor: '#181818'
   },
   title: {
     fontSize: 35,

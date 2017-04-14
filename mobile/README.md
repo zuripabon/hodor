@@ -2,6 +2,16 @@
 
 This is the official Hodor app (currently just available for android)
 
+# Development
+
+Run the commands below:
+
+```sh
+npm install
+react-native link
+react-native run-android
+```
+
 ## Dist version
 
 In order to generate a debug mode apk, run `npm run apk:debug`. To run a release apk, you need to sign it first. The apk file will be generated at `android\app\build\outputs\apk\app-debug.apk`.
