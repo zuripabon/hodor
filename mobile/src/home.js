@@ -25,23 +25,28 @@ const SSID = 'HODOR';
 const PASS = 'hodor2017';
 const RECONNECTION_INTERVAL = 10;
 
-const connectToWifi = () => {
+const connectToHodorWifi = fn => {
   wifi.findAndConnect(SSID, PASS, found => {
     if(!found){
-      ToastAndroid.showWithGravity(
-        `${SSID} network not found`,
-        ToastAndroid.LONG,
-        ToastAndroid.BOTTOM,
-      );
-      return setTimeout(() => connectToWifi(), RECONNECTION_INTERVAL * 1000);
+      return fn(new Error('hodor network not found'));
+      // return setTimeout(() => connectToHodorWifi(fn), RECONNECTION_INTERVAL * 1000);
     }
-    ToastAndroid.showWithGravity(
-      `Connected to ${SSID} network`,
-      ToastAndroid.LONG,
-      ToastAndroid.BOTTOM,
-    );
+    return fn(null);
   });
 };
+
+const enableNetwork = cb => {
+  wifi.connectionStatus(isConnected => {
+    if(!isConnected) {
+      wifi.setEnabled(true);
+      return setTimeout(() => connectToHodorWifi(cb), 1000);
+    }
+    wifi.getSSID((ssid) => {
+      if(!ssid || ssid !== SSID) return connectToHodorWifi(cb);
+      cb(null);
+    });
+  });
+}
 
 export default class HomeView extends Component {
 
@@ -50,16 +55,22 @@ export default class HomeView extends Component {
   }
 
   componentDidMount(){
-    wifi.isEnabled(isEnabled => {
-      if(!isEnabled) wifi.setEnabled(true);
-      connectToWifi();
+    enableNetwork((error)=>{
+      if(error) return this._displayConnectionError();
+      ToastAndroid.showWithGravity(
+          `Connected to ${SSID} network`,
+          ToastAndroid.LONG,
+          ToastAndroid.BOTTOM)
     });
   }
 
-  // _onPressButton(){
-  //
-  //   this.props.navigator.replace({id:Routes.parking.id});
-  // }
+  _displayConnectionError(){
+    ToastAndroid.showWithGravity(
+      `${SSID} network not found`,
+      ToastAndroid.LONG,
+      ToastAndroid.BOTTOM,
+    );
+  }
 
   _emit(action, onResponse){
     //console.warn(`http://${settings.host}:${settings.port}/${action}`)
@@ -69,11 +80,17 @@ export default class HomeView extends Component {
   }
 
   join(){
-    this._emit('pi/join', (error, data) => console.log('joined'));
+    enableNetwork((error)=>{
+      if(error) return this._displayConnectionError();
+      this._emit('pi/join', (error, data) => console.log('joined'))
+    });
   }
 
   leave(){
-    this._emit('pi/leave', (error, data) => console.log('left'));
+    enableNetwork((error)=>{
+      if(error) return this._displayConnectionError();
+      this._emit('pi/leave', (error, data) => console.log('left'));
+    });
   }
 
   render() {
