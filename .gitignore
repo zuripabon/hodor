@@ -1,4 +1,5 @@
 *.pyc
+whatsapp-bot/config.json
 
 # OSX
 #
@@ -38,6 +39,7 @@ node_modules/
 npm-debug.log
 
 # BUCK
+#
 buck-out/
 \.buckd/
 android/app/libs
