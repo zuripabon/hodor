@@ -1,16 +1,20 @@
 #/bin/env python
 
-import logging
 import sys
-import getopt
 import os
-from layer import BotLayer
-from config import load
+import logging
+import getopt
+from utils import load
 from yowsup.stacks import  YowStackBuilder
 from yowsup.layers.auth import AuthError
 from yowsup.layers import YowLayerEvent
 from yowsup.layers.network import YowNetworkLayer
 from yowsup.env import YowsupEnv
+
+sys.path.insert(1, os.path.join(sys.path[0], '..'))
+
+from layer import BotLayer
+
 
 def main(argv):
 

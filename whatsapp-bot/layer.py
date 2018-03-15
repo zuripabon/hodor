@@ -1,8 +1,8 @@
 from yowsup.layers.interface import YowInterfaceLayer, ProtocolEntityCallback
 from yowsup.layers.protocol_receipts.protocolentities import OutgoingReceiptProtocolEntity
 from yowsup.layers.protocol_acks.protocolentities import OutgoingAckProtocolEntity
-from utils import get_text_or_none
-from config import joiner_tokens, leaver_tokens
+from utils import get_text_or_none, joiner_tokens, leaver_tokens
+from app.mod_pi.pi import join as join_pi, leave as leave_pi
 
 def BotLayer():
 
@@ -19,10 +19,10 @@ def BotLayer():
         return
       
       if any([word.lower() in message_text.lower() for word in joiner_tokens]):
-        print("joining", message_text)
+        join_pi()
 
       if any([word.lower() in message_text.lower() for word in leaver_tokens]):
-        print("leaving", message_text)
+        leave_pi()
 
     @ProtocolEntityCallback("receipt")
     def onReceipt(self, entity):
